@@ -1,41 +1,34 @@
-package Ex2493;
-
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.util.Stack;
-
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int testCase = Integer.parseInt(br.readLine());
-        Stack<Integer> oper = new Stack<>();
-        Stack<Integer> result = new Stack<>();
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        for (int i = 0; i < testCase; i++) {
-            int input = Integer.parseInt(st.nextToken());
-            oper.push(input);
-        }
-
-//        int size = oper.size() -2 ;
+//package Ex2493;
 //
-//        while(!oper.isEmpty()){
-//            if(oper.peek() < oper.get(size)) {
-//                result.push(size + 1);
-//                oper.pop();
-//                size--;
+//import kotlin.Pair;
+//
+//import java.io.IOException;
+//import java.io.BufferedReader;
+//import java.io.InputStreamReader;
+//import java.util.StringTokenizer;
+//import java.util.Stack;
+//
+//public class Main {
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        int testCase = Integer.parseInt(br.readLine());
+//        Stack <Pair<Long, Long>> top = new Stack<>();
+//        StringTokenizer st = new StringTokenizer(br.readLine());
+//
+//        for(long i = 0; i < testCase; i++){
+//            long input = Long.parseLong(st.nextToken());
+//            while(!top.isEmpty()){
+//                if(top.peek().getSecond() > input){
+//                    System.out.print(top.peek().getFirst()+" ");
+//                    break;
+//                }
+//                top.pop();
 //            }
-//            else if(oper.pop() < oper.get(size) && size == 0)
-//                result.push(0);
-//            else
-//                size--;
+//            if(top.isEmpty())
+//                System.out.print("0 ");
+//
+//            top.push(new Pair<>(i+1, input));
 //        }
-
-        while (!result.isEmpty()) {
-            System.out.print(result.pop() + " ");
-        }
-    }
-}
-
+//    }
+//}
+//
