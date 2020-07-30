@@ -8,7 +8,7 @@ public class Main {
         int size = sc.nextInt();
         int[] arr = new int[size+1];
         int[] dp = new int[size+1];
-        int max = 0;
+        int max = 1;
 
         for(int i = 1; i <= size; i++){
             arr[i] = sc.nextInt();
