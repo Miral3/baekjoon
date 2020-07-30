@@ -10,7 +10,7 @@ public class Main {
         String[] arrStr = br.readLine().split(" ");
         int[] arr = new int[testCase];
         int[] dp = new int[testCase];
-        int max = 0;
+        int max = 1;
         for(int i = 0; i < testCase; i++){
             arr[i] = Integer.parseInt(arrStr[i]);
         }
