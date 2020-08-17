@@ -5,47 +5,50 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Main {
-    static int num;
-    static int testCase;
+    static int N, M;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] numStr = br.readLine().split(" ");
-        num = Integer.parseInt(numStr[0]); // 비교할 학생의 수
-        testCase = Integer.parseInt(numStr[1]); // 비교할 횟수
-        int[] degree = new int[num + 1]; // 각 원소의 차수를 저장할 변수
+        int stuNum1, stuNum2;
+        int[] degree;
+        String[] input;
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>(); //
-        for(int i = 0; i < num + 1; i++) {
-            graph.add(new ArrayList<Integer>());
+        input = br.readLine().split(" ");
+        N = Integer.parseInt(input[0]);
+        M = Integer.parseInt(input[1]);
+
+        for(int i = 0; i < N + 1; i++) {
+            graph.add(new ArrayList<>());
         }
 
-        for(int i = 0; i < testCase; i++) {
-            String[] arrStr = br.readLine().split(" ");
-            int input1 = Integer.parseInt(arrStr[0]);
-            int input2 = Integer.parseInt(arrStr[1]);
-            graph.get(input1).add(input2);
-            degree[input2]++;
+        degree = new int[N+1];
+
+        for(int i = 0; i < M; i++) {
+            input = br.readLine().split(" ");
+            stuNum1 = Integer.parseInt(input[0]);
+            stuNum2 = Integer.parseInt(input[1]);
+            graph.get(stuNum1).add(stuNum2);
+            degree[stuNum2]++;
         }
 
-        topologySort(graph, degree);
+        topoligicSorting(graph, degree);
+
     }
 
-    public static void topologySort(ArrayList<ArrayList<Integer>> graph, int[] degree) {
-        Queue<Integer> que = new LinkedList<>();
+    public static void topoligicSorting(ArrayList<ArrayList<Integer>> graph, int[] degree) {
+        LinkedList<Integer> que = new LinkedList<>();
 
-        for(int i = 1; i < num + 1; i++) {
+        for(int i = 1; i < N+1; i++) {
             if(degree[i] == 0) {
                 que.add(i);
             }
         }
 
-        for(int i = 0; i < num; i++) {
+        for(int i = 0; i < N; i++) {
             int del = que.remove();
             System.out.print(del + " ");
-
             for(int nextDel : graph.get(del)) {
                 degree[nextDel]--;
                 if(degree[nextDel] == 0) {
