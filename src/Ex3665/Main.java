@@ -54,7 +54,7 @@ public class Main {
             topologySort(graph, degree, sort);
         }
     }
-
+ 
     public static void topologySort(ArrayList<ArrayList<Integer>> graph, int[] degree, int[] sort) {
         LinkedList<Integer> que = new LinkedList<>();
 
