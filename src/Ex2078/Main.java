@@ -12,7 +12,7 @@ public class Main {
         int B = Integer.parseInt(input[1]);
         int left = 0;
         int right = 0;
-        while(true) {
+        while(!(A==1&&B==1)) {
             if(A > B) {
                 A -= B;
                 left++;
@@ -20,9 +20,6 @@ public class Main {
             else {
                 B -= A;
                 right++;
-            }
-            if(A == 1 && B == 1) {
-                break;
             }
         }
         System.out.println(left + " " + right);
