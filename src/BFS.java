@@ -1,12 +1,13 @@
-package Ex2606;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Main {
+public class BFS {
     static int N;
     static int M;
+    static int root;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int inputA;
@@ -14,8 +15,11 @@ public class Main {
         String[] input;
         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 
-        N = Integer.parseInt(br.readLine());
-        M = Integer.parseInt(br.readLine());
+        input = br.readLine().split(" ");
+        N = Integer.parseInt(input[0]);
+        M = Integer.parseInt(input[1]);
+        root = Integer.parseInt(input[2]);
+
         for(int i = 0; i < N+1; i++) {
             graph.add(new ArrayList<>());
         }
@@ -29,29 +33,24 @@ public class Main {
         }
 
         BFS(graph);
-
-        br.close();
     }
 
     public static void BFS(ArrayList<ArrayList<Integer>> graph) {
         LinkedList<Integer> que = new LinkedList<>();
         boolean[] check = new boolean[N+1];
-        int cnt = 0;
 
-        que.add(1);
-        check[1] = true;
+        que.add(root);
+        check[root] = true;
 
-        while(!que.isEmpty()) {
+        for(int i = 0; i < N; i++) {
             int rm = que.remove();
+            System.out.print(rm + " ");
             for(int nxtRm : graph.get(rm)) {
                 if(!check[nxtRm]) {
                     check[nxtRm] = true;
                     que.add(nxtRm);
-                    cnt++;
                 }
             }
         }
-
-        System.out.println(cnt);
     }
 }

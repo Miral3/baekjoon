@@ -1,42 +1,23 @@
 import java.io.*;
 import java.util.*;
 
-public class Test {
-    public static void main(String[] args) throws IOException {
+public class test {
+    public static  void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));;
+        HashMap<Integer, Integer> map = new HashMap<>();
 
-////        String[] arr = br.readLine().split(" ");
-////        String ps = "(";
-////
-////        for(int i = 0; i < arr.length; i++){
-////            if(arr[i].equals(ps))
-////                bw.write("lajflasnrglwnrlg");
-////        }
-//        // todo 첫번째 방법
-////        char[] testCase=br.readLine().toCharArray();
-////        char ps='(';
-////        for(int i=0; i<testCase.length; i++){
-////            if(testCase[i]==ps){
-////                System.out.println("왼쪽괄호");
-////            }
-////        }
-//
-//        // todo 두번째 방법
-//        String tc=br.readLine();
-//        char ps='(';
-//        for(int i=0; i<tc.length(); i++){
-//            if(tc.charAt(i)==ps){
-//                System.out.println("왼쪽괄호");
-//            }
-//        }
-//
-        double a = 4;
-        double b = 5;
-
-        System.out.println(a/b);
-        bw.flush();
-        br.close();
+        map.put(1, 1);
+        map.put(2, 1);
+        map.put(3, 9);
+        map.put(4, 1);
+        map.put(5, 1);
+        map.put(6, 1);
+        List<Integer> keySetList = new ArrayList<>(map.keySet());
+        Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
+        for(Integer key : keySetList) {
+            System.out.println("key : " + key + " / " + "value : " + map.get(key));
+        }
         bw.close();
     }
 }
