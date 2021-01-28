@@ -1,14 +1,12 @@
 package Ex20291;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int testCase = Integer.parseInt(br.readLine());
         String[] arr = new String[testCase];
 
@@ -26,10 +24,10 @@ public class Main {
 
         /* 출력 */
         for(String key : map.keySet()){
-
             Integer value = map.get(key);
-
-            System.out.println(key+" "+value);
+            bw.write(key+" "+value + "\n");
         }
+        bw.close();
+        br.close();
     }
 }
