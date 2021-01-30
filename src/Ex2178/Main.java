@@ -44,12 +44,9 @@ public class Main {
         count[0][0] = 1;
 
         while (!q.isEmpty()) {
-            Point xy=q.poll();
-            int x= (int) xy.getX();
-            int y= (int) xy.getY();
-//            int x = q.poll().x;
-//            int y = q.poll().y;
-//            q.poll();
+            int x = q.peek().x;
+            int y = q.peek().y;
+            q.poll();
             if (!(y + 1 >= width) && map[x][y + 1] == '1' && !isVisited[x][y + 1]) {
                 isVisited[x][y + 1] = true;
                 q.add(new Point(x, y + 1));
