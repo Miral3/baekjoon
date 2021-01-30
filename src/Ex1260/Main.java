@@ -10,7 +10,6 @@ public class Main {
     static int node, edge, root, infoLeft, infoRight;
     static boolean[] check;
     static ArrayList<Integer> v[] = new ArrayList[max];
-    static Queue<Integer> bfsRoot = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,9 +40,6 @@ public class Main {
 
         check = new boolean[node+1];
         bfs();
-        while(!bfsRoot.isEmpty()){
-            System.out.print(bfsRoot.poll()+" ");
-        }
     }
     public static void dfs(int x){
         if(check[x])
@@ -60,14 +56,15 @@ public class Main {
         Queue<Integer> q = new LinkedList<>();
         q.add(root);
         check[root] = true;
+        System.out.print(root + " ");
 
         while(!q.isEmpty()){
             int next = q.poll();
-            bfsRoot.add(next);
             for(int i = 0; i < v[next].size(); i++){
                 if(!check[v[next].get(i)]) {
                     check[v[next].get(i)] = true;
                     q.add(v[next].get(i));
+                    System.out.print(v[next].get(i) + " ");
                 }
             }
         }
