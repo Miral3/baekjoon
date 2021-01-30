@@ -40,10 +40,10 @@ public class DFS {
         if(check[node]) {
             return;
         }
-        System.out.println(node + " ");
+        System.out.print(node + " ");
         check[node] = true;
         for(int nxt : graph.get(node)){
-            if(!check[node]) {
+            if(!check[nxt]) {
                 DFS(graph, nxt);
             }
         }
