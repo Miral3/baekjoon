@@ -18,7 +18,6 @@ public class Main {
 
         que.add(N);
         isVisted[N] = true;
-
         while(!que.isEmpty()) {
             int size = que.size();
             for(int i = 0; i < size; i++) {
