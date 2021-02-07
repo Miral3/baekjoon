@@ -63,7 +63,7 @@ public class Main {
 
         System.out.println(normal + " " + abnormal);
     }
-    
+
     public static void DFS(int x, int y, int idx) {
         visited[x][y]= true;
 
