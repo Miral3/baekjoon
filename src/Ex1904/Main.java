@@ -5,18 +5,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+    static int[] arrData;
+    static int max = 1000001;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int length = Integer.parseInt(br.readLine());
-        int count[] = new int[length+1];
+        int input = Integer.parseInt(br.readLine());
+        arrData = new int[max];
+        System.out.println(dp(input));
+    }
 
-        count[0] = 1;
-        count[1] = 2;
+    public static int dp(int N) {
+        arrData[1] = 1;
+        arrData[2] = 2;
 
-        for(int i = 2; i < count.length; i++)
-            count[i] = (count[i-2] + count[i-1]) % 15746;
-
-        System.out.print(count[(length-1)]);
+        for(int i = 3; i <= N; i++) {
+            arrData[i] = (arrData[i-2] + arrData[i-1]) % 15746;
+        }
+        return arrData[N];
     }
 }
