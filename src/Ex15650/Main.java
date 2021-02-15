@@ -10,7 +10,6 @@ public class Main {
     static BufferedWriter bw;
     static int N;
     static int M;
-    static int cnt;
     static int[] arr;
     static boolean[] isVisited;
     public static void main(String[] args) throws IOException {
