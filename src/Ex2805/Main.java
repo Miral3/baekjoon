@@ -21,9 +21,8 @@ public class Main {
 
     String[] input = br.readLine().split(" ");
     int N = Integer.parseInt(input[0]);
-    int M = Integer.parseInt(input[1]);
-    int[] trees = new int[N];
-    int max = 0;
+    long M = Integer.parseInt(input[1]);
+    long[] trees = new long[N];
     input = br.readLine().split(" ");
 
     for (int i = 0; i < N; i++) {
@@ -37,14 +36,14 @@ public class Main {
     bw.close();
   }
 
-  public static int binarySearch(int[] arr, int N, int M) {
-    int left = 0;
-    int right = arr[N - 1];
-    int result = 0;
+  public static long binarySearch(long[] arr, int N, long M) {
+    long left = 0;
+    long right = arr[N - 1];
+    long result = 0;
 
     while (left <= right) {
-      int mid = (left + right) / 2;
-      int sum = 0;
+      long mid = (left + right) / 2;
+      long sum = 0;
 
       for (int i = 0; i < N; i++) {
         if (mid < arr[i]) {
