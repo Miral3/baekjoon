@@ -1,5 +1,11 @@
 package Ex1283;
 
+/*
+문제 이름 : 단축키 지정
+알고리즘 : 구현
+자료구조 : 문자열, 배열
+*/
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
