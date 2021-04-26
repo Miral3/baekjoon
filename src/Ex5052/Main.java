@@ -1,5 +1,11 @@
 package Ex5052;
 
+/*
+문제 이름 : 전화번호 목록
+알고리즘 : 문자열, 정렬
+자료구조 : 배열
+*/
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
