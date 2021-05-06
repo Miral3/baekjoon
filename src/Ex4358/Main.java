@@ -1,5 +1,11 @@
 package Ex4358;
 
+/*
+문제 이름 : 생태학
+알고리즘 : 해시 맵
+자료구조 : 해시 맵
+*/
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
