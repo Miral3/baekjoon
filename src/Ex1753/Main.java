@@ -3,7 +3,7 @@ package Ex1753;
 /*
 문제 이름 : 최단경로
 알고리즘 : 그래프 이론, 다익스트라
-자료구조 : 배열
+자료구조 : 배열 리스트
 */
 
 import java.io.BufferedReader;
