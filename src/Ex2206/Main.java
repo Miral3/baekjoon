@@ -1,9 +1,9 @@
 package Ex2206;
 
 /*
-문제 이름 : 비슷한 단어
-알고리즘 : 구현
-자료구조 : 문자열
+문제 이름 : 벽 부수고 이동하기
+알고리즘 : BFS
+자료구조 : 배열
 */
 
 import java.io.BufferedReader;
