@@ -3,7 +3,7 @@ package Ex1094;
 /*
 문제 이름 : 비슷한 단어
 알고리즘 : 비트마스크
-자료구조 : 
+자료구조 :
 */
 
 import java.io.BufferedReader;
