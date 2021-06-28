@@ -3,7 +3,7 @@ package Ex1476;
 /*
 문제 이름 : 날짜 계산
 알고리즘 : 수학
-자료구조 : 
+자료구조 :
 */
 
 import java.io.BufferedReader;
@@ -42,7 +42,7 @@ public class Main {
         return;
       }
     }
-    System.out.println(7980);
+
     br.close();
     bw.close();
   }
