@@ -30,31 +30,21 @@ public class Main {
             B[i] = Integer.parseInt(inputB[i]);
         }
 
-        Set<Integer> set1 = new HashSet<>();
-        Set<Integer> set2 = new HashSet<>();
+        Set<Integer> set = new HashSet<>();
 
         for(int i = 0; i < lenA; i++) {
-            set1.add(A[i]);
+            set.add(A[i]);
         }
 
         for(int i = 0; i < lenB; i++) {
-            set2.add(B[i]);
-        }
-
-        int cnt = 0;
-        for(int i = 0; i < lenB; i++) {
-            if(!set1.contains(B[i])) {
-                cnt++;
+            if(set.contains(B[i])) {
+                set.remove(B[i]);
+            } else {
+                set.add(B[i]);
             }
         }
 
-        for(int i = 0; i < lenA; i++) {
-            if(!set2.contains(A[i])) {
-                cnt++;
-            }
-        }
-
-        System.out.println(cnt);
+        System.out.println(set.size());
 
         br.close();
         bw.close();
