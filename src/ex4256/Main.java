@@ -22,17 +22,17 @@ public class Main {
 
             preorder = new int[n];
             String[] input = br.readLine().split(" ");
-            for(int j = 0; j < n; j++) {
+            for (int j = 0; j < n; j++) {
                 preorder[j] = Integer.parseInt(input[j]);
             }
 
             inorder = new int[n];
             input = br.readLine().split(" ");
-            for(int j = 0; j < n; j++) {
+            for (int j = 0; j < n; j++) {
                 inorder[j] = Integer.parseInt(input[j]);
             }
             postorder(0, n, 0);
-            System.out.println("\n");
+            System.out.println();
         }
 
         br.close();
@@ -41,7 +41,7 @@ public class Main {
 
     public static void postorder(int start, int end, int current) {
        for(int i = start; i < end; i++) {
-           if(preorder[current] == inorder[i]) {
+           if (preorder[current] == inorder[i]) {
                postorder(start, i, current + 1);
                postorder(i + 1, end, current + i - start + 1);
                System.out.print(inorder[i] + " ");
