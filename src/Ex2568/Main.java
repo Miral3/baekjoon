@@ -1,73 +1,103 @@
-//package Ex2568;
-//
-//import java.io.IOException;
-//import java.util.Arrays;
-//import java.util.Comparator;
-//import java.util.Scanner;
-//import java.util.Stack;
-//
-//public class Main {
-//    public static void main(String[] args) throws IOException{
-//        Scanner sc = new Scanner(System.in);
-//        int testCase = sc.nextInt();
-//        int[][] arr = new int[testCase][2];
-//        int[] dp = new int[testCase];
-//        int[] ans = new int[testCase];
-//        int max = 1;
-//        int idx = 0;
-//
-//        for(int i = 0; i < testCase; i++){
-//            for(int j = 0; j < 2; j++){
-//                arr[i][j] = sc.nextInt();
-//            }
-//        }
-//
-//        dp[0] = 1;
-//        ans[0] = arr[0][1];
-//        Arrays.sort(arr, Comparator.comparingInt(o1 -> o1[0]));
-//        for(int i = 1; i < testCase; i++){
-//            if(ans[idx] < arr[i][1]){
-//                ans[++idx] = arr[i][1];
-//                dp[i] = idx + 1;
-//            }
-//            else{
-//                int j = lowBound(ans, idx, arr[i][1]);
-//                ans[j] = arr[i][1];
-//                dp[i] = idx + 1;
-//
-//            }
-//            if(max < dp[i]){
-//                max = dp[i];
-//            }
-//        }
-//        System.out.println(testCase - max);
-//
-//        Stack<Integer> st = new Stack<>();
-//        for(int i = testCase - 1; i >= 0; i--){
-//            if(max == dp[i]){
-//                max--;
-//            }
-//            else{
-//                st.push(arr[i][0]);
-//            }
-//        }
-//
-//        while(!st.isEmpty()){
-//            System.out.println(st.pop());
-//        }
-//    }
-//
-//    public static int lowBound(int[] arr, int end, int target){
-//        int start = 0;
-//        while(start < end){
-//            int mid = (start + end) / 2;
-//            if(arr[mid] > target){
-//                end = mid;
-//            }
-//            else {
-//                start = mid + 1;
-//            }
-//        }
-//        return end;
-//    }
-//}
+package ex2568;
+
+/*
+문제 이름: 전깃줄 - 2
+알고리즘: LIS, LowerBound
+자료구조: 배열 리스트, 스택
+*/
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
+
+class Node implements Comparable<Node> {
+    int A;
+    int B;
+
+    public Node(int A, int B) {
+        this.A = A;
+        this.B = B;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return A - o.A;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int n = Integer.parseInt(br.readLine());
+        ArrayList<Node> list = new ArrayList<>();
+        int[] ans = new int[n];
+        int[] dp = new int[n];
+
+        for(int i = 0; i < n; i++) {
+            String[] input = br.readLine().split(" ");
+            int A = Integer.parseInt(input[0]);
+            int B = Integer.parseInt(input[1]);
+
+            list.add(new Node(A, B));
+        }
+
+        Collections.sort(list);
+
+
+        dp[0] = 1;
+        ans[0] = list.get(0).B;
+        int j = 0;
+        int max = 1;
+        for(int i = 1; i < n; i++) {
+            if (ans[j] < list.get(i).B) {
+                ans[++j] = list.get(i).B;
+                dp[i] = j + 1;
+            } else {
+                int idx = lowerBound(ans, list.get(i).B, j);
+                ans[idx] = list.get(i).B;
+                dp[i] = idx + 1;
+            }
+
+            max = Math.max(dp[i], max);
+        }
+
+        bw.write(n - max + "\n");
+
+        Stack<Integer> st = new Stack<>();
+        for(int i = n-1; i >= 0; i--) {
+            if(dp[i] == max) {
+                max--;
+            } else {
+                st.push(list.get(i).A);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty()) {
+            sb.append(st.pop()).append("\n");
+        }
+
+        bw.write(sb.toString());
+        br.close();
+        bw.close();
+    }
+
+    public static int lowerBound(int[] arr, int target, int right) {
+        int left = 0;
+
+        while(left < right) {
+            int mid = (left + right) / 2;
+
+            if (target <= arr[mid]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return right;
+    }
+}
