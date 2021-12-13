@@ -33,7 +33,8 @@ public class Main {
                 dp[i + 1] = Math.max(dp[i + 1], dp[j] + max - min);
             }
         }
-        System.out.println();
+
+        bw.write(dp[n] + "\n");
         br.close();
         bw.close();
     }
