@@ -2,25 +2,22 @@ package Ex18352;
 
 /*
 문제 이름 : 특정 거리의 도시 찾기
-알고리즘 : BFS
+알고리즘 : 다익스트라
 자료구조 : 배열 리스트
 */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 
 class Node implements Comparable<Node> {
-  int end, weight;
+  int node;
+  int weight;
 
-  public Node(int end, int weight) {
-    this.end = end;
+  public Node(int node, int weight) {
+    this.node = node;
     this.weight = weight;
   }
 
@@ -31,73 +28,71 @@ class Node implements Comparable<Node> {
 }
 
 public class Main {
-  static int N, M, K, X;
-  static List<Node>[] list;
+  static int n;
+  static List<Integer>[] list;
   static int[] dist;
-  static boolean[] check;
 
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-    String[] input1 = br.readLine().split(" ");
-    N = Integer.parseInt(input1[0]);
-    M = Integer.parseInt(input1[1]);
-    K = Integer.parseInt(input1[2]);
-    X = Integer.parseInt(input1[3]);
+    String[] input = br.readLine().split(" ");
+    n = Integer.parseInt(input[0]);
+    int m = Integer.parseInt(input[1]);
+    int k = Integer.parseInt(input[2]);
+    int x = Integer.parseInt(input[3]);
 
-    list = new ArrayList[N + 1];
-    check = new boolean[N + 1];
-    dist = new int[N + 1];
+    dist = new int[n + 1];
+    Arrays.fill(dist, Integer.MAX_VALUE);
 
-    for(int i = 1; i <= N; i++) {
+    list = new List[n + 1];
+    for (int i = 1; i <= n; i++) {
       list[i] = new ArrayList<>();
     }
 
-    Arrays.fill(dist, Integer.MAX_VALUE);
+    for (int i = 0; i < m; i++) {
+      input = br.readLine().split(" ");
+      int left = Integer.parseInt(input[0]);
+      int right = Integer.parseInt(input[1]);
 
-    for(int i = 0; i < M; i++) {
-      String[] input2 = br.readLine().split(" ");
-      int start = Integer.parseInt(input2[0]);
-      int end = Integer.parseInt(input2[1]);
-
-      list[start].add(new Node(end, 1));
+      list[left].add(right);
     }
 
-    dijkstra(X);
+    dijkstra(x);
 
-    boolean exists = false;
-    for(int i = 1; i <= N; i++) {
-      if(dist[i] == K) {
+    boolean isExist = false;
+    for (int i = 1; i <= n; i++) {
+      if (dist[i] == k) {
         bw.write(i + "\n");
-        exists = true;
+        isExist = true;
       }
     }
-    if(!exists) {
-      System.out.println(-1);
+
+    if (!isExist) {
+      bw.write(-1 + "\n");
     }
     br.close();
     bw.close();
   }
 
-  public static void dijkstra(int start) {
-    PriorityQueue<Node> pq = new PriorityQueue();
-    pq.add(new Node(start, 0));
-    dist[start] = 0;
+  public static void dijkstra(int x) {
+    PriorityQueue<Node> pq = new PriorityQueue<>();
+    pq.add(new Node(x, 0));
+    boolean[] isVisited = new boolean[n + 1];
+    dist[x] = 0;
 
-    while(!pq.isEmpty()) {
-      Node curNode = pq.poll();
-      int cur = curNode.end;
+    while (!pq.isEmpty()) {
+      int cur = pq.poll().node;
 
-      if(check[cur]) {
+      if (isVisited[cur]) {
         continue;
       }
-      check[cur] = true;
+      isVisited[cur] = true;
 
-      for(Node node : list[cur]) {
-        if(dist[node.end] > dist[cur] + node.weight) {
-          dist[node.end] = dist[cur] + node.weight;
-          pq.add(new Node(node.end, dist[node.end]));
+      for (int next : list[cur]) {
+        if (dist[next] > dist[cur] + 1) {
+          dist[next] = dist[cur] + 1;
+          pq.add(new Node(next, dist[next]));
         }
       }
     }
