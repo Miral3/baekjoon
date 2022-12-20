@@ -9,53 +9,52 @@ package ex2630;
 import java.io.*;
 
 public class Main {
-    static int n;
-    static int[] cnt = new int[2];
     static int[][] map;
+    static int[] answer;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        n = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(br.readLine());
         map = new int[n][n];
-        for(int i = 0; i < n; i++) {
+        answer = new int[2];
+        for (int i = 0; i < n; i++) {
             String[] input = br.readLine().split(" ");
-            for(int j = 0; j < n; j++) {
+            for (int j = 0; j < n; j++) {
                 map[i][j] = Integer.parseInt(input[j]);
             }
         }
 
-        dfs(0, 0, n);
+        dfs(n, 0, 0);
 
-        bw.write(cnt[0] + "\n" + cnt[1]);
-
+        bw.write(answer[0] + "\n" + answer[1] + "\n");
         br.close();
         bw.close();
     }
-    public static boolean isSame(int x, int y, int size) {
-        int num = map[y][x];
 
-        for(int i = y; i < y + size; i++) {
-            for(int j = x; j < x + size; j++) {
-                if(map[i][j] != num) {
+    public static boolean checkMap(int n, int y, int x) {
+        int num = map[y][x];
+        for (int i = y; i < y + n; i++) {
+            for (int j = x; j < x + n; j++) {
+                if (map[i][j] != num) {
                     return false;
                 }
             }
         }
 
-        cnt[num]++;
+        answer[num]++;
         return true;
     }
 
-    public static void dfs(int x, int y, int size) {
-        if(isSame(x, y, size)) {
+    public static void dfs(int n, int y, int x) {
+        if (checkMap(n, y, x)) {
             return;
         }
 
-        dfs(x, y, size / 2);
-        dfs(x, y + (size / 2), size / 2);
-        dfs(x + (size / 2), y, size / 2);
-        dfs(x + (size / 2), y + (size / 2), size / 2);
+        dfs(n / 2, y, x);
+        dfs(n / 2, y, x + (n / 2));
+        dfs(n / 2, y + (n / 2), x);
+        dfs(n / 2, y + (n / 2), x + (n / 2));
     }
 }
